@@ -1,4 +1,4 @@
-# 🚀 Cerberus - Internal Developer Platform
+# Cerberus - Internal Developer Platform
 
 <div align="center">
 
