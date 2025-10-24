@@ -11,7 +11,7 @@
 
 *From idea to production in hours, not weeks*
 
-[Get Started](#-quick-start) • [Documentation](https://github.com/cerberus-platform-mop/cerberus) • [Architecture](#-platform-architecture) • [Contributing](CONTRIBUTING.md)
+[Get Started](https://github.com/cerberus-platform-mop/cerberus) • [Documentation](https://github.com/cerberus-platform-mop/cerberus/tree/main/_workspace) • [Architecture](https://github.com/cerberus-platform-mop/cerberus/blob/main/_workspace/cerberus-technical-architecture.md)
 
 </div>
 
