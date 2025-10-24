@@ -34,16 +34,6 @@ We believe that every startup deserves to focus on what makes them unique—thei
 **The Solution:**
 Cerberus provides **Golden Paths**—pre-configured, battle-tested templates that embody years of best practices. Developers go from "I have an idea" to "I have a running service" in under one hour.
 
-### 🎁 What We Deliver
-
-| Metric | Before Cerberus | With Cerberus | Improvement |
-|--------|----------------|---------------|-------------|
-| **New Service Deployment** | Weeks | < 1 hour | 98% faster |
-| **Lead Time for Features** | 2-4 days | 2-4 hours | **92% reduction** |
-| **Developer Productivity** | Baseline | +10-20% | Reduced friction |
-| **Infrastructure Cost** | Baseline | -20-30% | Shared resources |
-| **Incident Response** | Hours | < 15 minutes | 95% faster |
-| **Support Cost** | Baseline | -40-60% | Automation |
 
 ---
 
@@ -51,27 +41,29 @@ Cerberus provides **Golden Paths**—pre-configured, battle-tested templates tha
 
 ### Core Technology Stack
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Developer Portal (GetPort.io)            │
-│        Service Catalog • Golden Paths • Self-Service        │
-└─────────────────────────────────────────────────────────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-┌───────▼────────┐   ┌────────▼────────┐   ┌───────▼────────┐
-│   CI/CD        │   │  Infrastructure │   │  Kubernetes    │
-│ GitHub Actions │   │ OpenTofu/TG     │   │  AWS EKS       │
-│ GitOps/ArgoCD  │   │ Multi-Tenant    │   │  Multi-Tenant  │
-└────────────────┘   └─────────────────┘   └────────────────┘
-        │                     │                     │
-        └─────────────────────┼─────────────────────┘
-                              │
-        ┌─────────────────────▼─────────────────────┐
-        │         Observability & Security          │
-        │  Prometheus • Grafana • OpenTelemetry     │
-        │     Fluent Bit • Vault • Falco            │
-        └───────────────────────────────────────────┘
+```mermaid
+graph TB
+    Portal[Developer Portal<br/>GetPort.io<br/><i>Service Catalog • Golden Paths • Self-Service</i>]
+
+    CICD[CI/CD<br/>GitHub Actions<br/>GitOps/ArgoCD]
+    IaC[Infrastructure<br/>OpenTofu/Terragrunt<br/>Multi-Tenant]
+    K8s[Kubernetes<br/>AWS EKS<br/>Multi-Tenant]
+
+    Observability[Observability & Security<br/>Prometheus • Grafana • OpenTelemetry<br/>Fluent Bit • Vault • Falco]
+
+    Portal --> CICD
+    Portal --> IaC
+    Portal --> K8s
+
+    CICD --> Observability
+    IaC --> Observability
+    K8s --> Observability
+
+    style Portal fill:#1a73e8,stroke:#1558b0,stroke-width:2px,color:#fff
+    style CICD fill:#34a853,stroke:#2d8e47,stroke-width:2px,color:#fff
+    style IaC fill:#ea4335,stroke:#c5392b,stroke-width:2px,color:#fff
+    style K8s fill:#fbbc04,stroke:#d69e03,stroke-width:2px,color:#fff
+    style Observability fill:#5f6368,stroke:#4d4f52,stroke-width:2px,color:#fff
 ```
 
 ### 🌟 Key Features
@@ -99,7 +91,7 @@ brew install gh terraform opentofu terragrunt kubectl
 gh auth login
 ```
 
-### Clone the Platform
+### Clone the Platform Workspace
 
 ```bash
 # Clone main repository
@@ -107,34 +99,7 @@ git clone git@github.com:cerberus-platform-mop/cerberus.git
 cd cerberus
 
 # Run automated workspace setup (clones all components)
-./setup-workspace.sh
-```
-
-### Get Your Interactive AI Introduction
-
-Paste this into Cursor to get a role-specific introduction:
-
-```markdown
-Hello! I'm a new engineer joining the Cerberus Internal Developer Platform team. I'd like an interactive introduction customized to my role.
-
-**My Details:**
-- Role: [Platform Engineer | DevOps Engineer | Infrastructure Engineer | Kubernetes Engineer]
-- Primary Interest: [AWS Account Factory | Infrastructure as Code | CI/CD Automation | Kubernetes & GitOps]
-
-**What I'd like from this session:**
-- [ ] Platform overview and architecture understanding
-- [ ] Role-specific workspace navigation
-- [ ] Resource discovery (docs, templates, guides)
-- [ ] Next steps and learning path recommendations
-
-Let's begin!
-```
-
-### Deploy Your First Service
-
-```bash
-# Coming soon: One-command service deployment
-cerberus deploy --template golang-rest-api --name my-service
+cat README.md
 ```
 
 ---
@@ -225,45 +190,6 @@ Manage Kubernetes clusters and GitOps workflows.
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions from engineers at all levels! Cerberus is built by the community, for the community.
-
-### How to Contribute
-
-1. **📚 Documentation**: Improve guides, add examples, clarify concepts
-2. **🔧 Components**: Build new platform components or enhance existing ones
-3. **🐛 Bug Reports**: Identify issues and help us improve
-4. **💡 Feature Requests**: Suggest new capabilities and improvements
-5. **🎓 Knowledge Sharing**: Share your experiences and best practices
-
-### Contribution Guidelines
-
-Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
-- Code of conduct
-- Development workflow
-- Pull request process
-- Coding standards
-- Testing requirements
-
-**Quick Start for Contributors:**
-```bash
-# Fork the repository
-gh repo fork cerberus-platform-mop/cerberus
-
-# Create a feature branch
-git checkout -b feature/amazing-feature
-
-# Make your changes and commit
-git commit -m "feat: add amazing feature"
-
-# Push and create PR
-git push origin feature/amazing-feature
-gh pr create
-```
-
----
-
 ## 🛡️ Security
 
 Security is a top priority for Cerberus. We implement security best practices at every layer:
@@ -275,44 +201,6 @@ Security is a top priority for Cerberus. We implement security best practices at
 - **🚨 Runtime Security**: Falco for threat detection and response
 
 **Found a security vulnerability?** Please see our [Security Policy](SECURITY.md) for responsible disclosure procedures.
-
----
-
-## 📊 Project Status
-
-### Current Phase: Foundation (Months 1-3)
-
-- ✅ Core infrastructure design complete
-- ✅ Architecture Decision Records established
-- 🚧 EKS cluster setup in progress
-- 🚧 GetPort.io portal deployment
-- 📅 First Golden Path template (Q1 2025)
-
-### Roadmap
-
-**Phase 1 (Months 1-3)**: Core Infrastructure
-- EKS cluster with basic monitoring
-- Developer portal deployment
-- First Golden Path template
-- Basic tenant provisioning
-
-**Phase 2 (Months 4-6)**: Golden Paths Expansion
-- Multiple service templates
-- Enhanced CI/CD pipelines
-- Advanced monitoring and alerting
-- Self-service provisioning
-
-**Phase 3 (Months 7-12)**: Enterprise Features
-- ML-powered monitoring
-- Automated tenant offboarding
-- Policy-as-code enforcement
-- Advanced deployment strategies
-
-**Phase 4 (Months 13+)**: AI-Enhanced Operations
-- Autonomous infrastructure optimization
-- Predictive capacity planning
-- Self-healing systems
-- Advanced business intelligence
 
 ---
 
@@ -329,12 +217,6 @@ Security is a top priority for Cerberus. We implement security best practices at
 
 - **GitHub Organization**: [@cerberus-platform-mop](https://github.com/cerberus-platform-mop)
 - **Main Repository**: [cerberus](https://github.com/cerberus-platform-mop/cerberus)
-
----
-
-## 📄 License
-
-Cerberus is open source software licensed under the [Apache License 2.0](LICENSE).
 
 ---
 
