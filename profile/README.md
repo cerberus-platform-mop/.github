@@ -239,7 +239,7 @@ Cerberus is built on the shoulders of giants. We're grateful to the open source 
 
 *Empowering ventures to build the future, faster*
 
-[Get Started](https://github.com/cerberus-platform-mop/cerberus) • [Documentation](https://github.com/cerberus-platform-mop/cerberus/tree/main/_workspace) • [Contributing](CONTRIBUTING.md) • [License](LICENSE)
+[Get Started](https://github.com/cerberus-platform-mop/cerberus) • [Documentation](https://github.com/cerberus-platform-mop/cerberus/tree/main/_workspace)
 
 </div>
 
